@@ -36,8 +36,7 @@ class PicoPagesImages extends AbstractPicoPlugin
         }
         $contentExt = $this->getConfig('content_ext');
         $this->path = substr($file, $contentDirLength);
-        $this->path = rtrim($this->path, "index$contentExt");
-        $this->path = rtrim($this->path, $contentExt);
+        $this->path = preg_replace("/" . preg_quote($contentExt) . "$/", "", $this->path);
         if ($this->path) {
             $this->path .= '/';
         }
